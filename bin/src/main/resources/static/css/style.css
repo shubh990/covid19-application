@@ -1,0 +1,52 @@
+body {
+	background: white;
+}
+
+.bg-primary{
+	background:  #00008B !important;
+}
+
+.my-card{
+	padding: 10px;
+	background: white;
+}
+
+.my-about{
+	padding: 12px;
+	background: #F5F5F5;
+}
+
+.div_before_table {
+    overflow:hidden;
+    height: auto;
+}
+
+th {
+  position: sticky;
+  background-color: white;
+  z-index: 2;
+  top: 0;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+  height: 100px; /* Should be removed. Only for demonstration */
+}
+
+.row1{
+  content: "";
+  display: table;
+  clear: both;
+  width: 100%;
+}
+
+.linkedIn{
+	width: 5%;
+	height: 6vh;
+	background: url(../Image/LinkedIn.jpg); 
+	background-size : cover;
+	background-attachment: fixed;
+	
+}

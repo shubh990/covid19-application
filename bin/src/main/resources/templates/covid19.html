@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<title>Covid Stats</title>
+</head>
+<body>
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 offset-md-0">
+					<div class="my-card">
+						<div class="fixed">
+
+							<!--Form  -->
+							<form novalidate="novalidate" th:action="@{/country} ">
+								<h2>Covid19 Results</h2>
+								<label for="result">Enter Country Name</label>
+								<div class="input-group mb-3 col-xs-2">
+									<input type="text" class="form-control"
+										placeholder="Country Name" id="country" th:name="country"
+										th:value="${country}" aria-describedby="button-addon2" style="text-transform: capitalize;">
+									<button
+										class="btn bg-primary text-white btn btn-outline-primary "
+										type="submit" id="button-addon2">Submit</button>
+								</div>
+							</form>
+							<!--Form End  -->
+							
+							<p th:text="${invalid}" align="center" style="color: red"></p>
+
+							<h3 th:text="${country}" align="center"></h3>
+
+							<div class="row1" th:if="${country}">
+								<div class="column">
+									<h6 align="center" style="color: red">Confirmed</h6>
+									<h6 align="center" th:text="${total.confirmed}" style="color: red"></h6>
+								</div>
+								
+								<div class="column">
+									<h6 align="center" style="color: blue">Active</h6>
+									<h6 align="center" th:text="${total.confirmed - total.recovered}" style="color: blue"></h6>
+								</div>
+								
+								<div class="column">
+									<h6 align="center" style="color: green;">Recovered</h6>
+									<h6 align="center" th:text="${total.recovered}" style="color: green;"></h6>
+								</div>
+								<div class="column">
+									<h6 align="center" style="color: Grey">Deceased</h6>
+									<h6 align="center" th:text="${total.deaths}" style="color: Grey"></h6>
+								</div>
+
+							</div>
+
+
+							<div class="margin">
+
+								<!-- Table -->
+								<div>
+									<div class="div_before_table">
+										<table th:if="${stats}" class="table table-striped">
+											<thead>
+												<tr>
+													<th scope="col"><a  th:href="@{state}" style="color: black">State</a></th>
+													<th scope="col"><a th:href="@{confirmed}" style="color: red">Confirmed</a></th>
+													<th scope="col"><a th:href="@{active}" style="color: blue">Active</a></th>
+													<th scope="col"><a th:href="@{recovered}" style="color: green">Recovered</a></th>
+													<th scope="col"><a th:href="@{deaths}" style="color: Grey">Deceased</a></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="s : ${stats}">
+													<td scope="row" th:text="${s.province}"></td>
+													<td th:text="${s.confirmed}" style="color: red;"></td>
+													<td th:text="${s.confirmed - s.recovered}" style="color: blue;"></td>
+													<td th:text="${s.recovered}" style="color: green;"></td>
+													<td th:text="${s.deaths}" style="color: grey;"></td>
+
+
+												</tr>
+											</tbody>
+										</table>
+									</div>
+
+									<!-- Table END  -->
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+	</section>
+</body>
+</html>
